@@ -1,4 +1,4 @@
-NAME=01-1
+NAME=01-1.out
 
 SRCS=main.cpp
 OBJS=$(SRCS:.cpp=.o)
