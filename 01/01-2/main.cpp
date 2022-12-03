@@ -22,12 +22,14 @@ int main()
 		else
 			act += std::stoi(line);
 	}
+	
 	l.sort(std::greater<int>());
 	for (int i = 0; i < TOP_ELVES && !l.empty(); l.pop_front())
 	{
 		total += l.front();
 		i++;
 	}
+
 	std::cout << "total carried by the " << TOP_ELVES << " elves carrying the most Calories : " << total << std::endl;
 	return (0);
 }

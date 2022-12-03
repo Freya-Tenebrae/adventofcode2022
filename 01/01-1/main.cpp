@@ -19,6 +19,7 @@ int main()
 		else
 			act += std::stoi(line);
 	}
+	
 	std::cout << "total carried by the Elf carrying the most Calories : " << max << std::endl;
 	return (0);
 }
