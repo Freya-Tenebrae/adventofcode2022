@@ -27,6 +27,6 @@ int main()
 		total += get_points(c);
 	}
 	
-	std::cout << "total of the priorities of those item types :" << total << std::endl;
+	std::cout << "total of the priorities of those item types : " << total << std::endl;
 	return (0);
 }

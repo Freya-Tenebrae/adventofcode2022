@@ -39,6 +39,6 @@ int main()
 		total += point_choice(you) + point_result(opp, you);
 	}
 	
-	std::cout << "total point you get if everything goes exactly as planned :" << total << std::endl;
+	std::cout << "total point you get if everything goes exactly as planned : " << total << std::endl;
 	return (0);
 }
