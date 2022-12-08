@@ -14,7 +14,7 @@
 
 [day 7](https://adventofcode.com/2022/day/7) : <img src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" data-canonical-src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" width="16" height="16" /><img src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" data-canonical-src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" width="16" height="16" /> 
 
-[day 8](https://adventofcode.com/2022/day/8) : not released yet
+[day 8](https://adventofcode.com/2022/day/8) : <img src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" data-canonical-src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" width="16" height="16" /><img src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" data-canonical-src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" width="16" height="16" /> 
 
 [day 9](https://adventofcode.com/2022/day/9) : not released yet
 
