@@ -1,8 +1,8 @@
-NAME=11-1.out
+NAME=11-2.out
 
-SRCS=main.cpp Monkey.cpp
+SRCS=main.cpp Monkey.cpp Item.cpp
 OBJS=$(SRCS:.cpp=.o)
-INCS=Monkey.hpp
+INCS=Monkey.hpp Item.hpp
 
 CC=clang++
 CFLAGS=-Wall -Wextra -Werror -g3

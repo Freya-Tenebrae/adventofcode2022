@@ -1,13 +1,11 @@
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <iomanip>
+
+#include "Item.hpp"
 #include "Monkey.hpp"
 
 static Monkey pars(std::vector<std::string> details)
 {
-	std::vector<int> carriying;
+	std::vector<Item> carriying;
 	char op;
 	int v_op, div, t, f;
 
@@ -15,7 +13,7 @@ static Monkey pars(std::vector<std::string> details)
 	while (details[0].compare("") != 0)
 	{
 		std::string::size_type pos;
-		carriying.push_back(std::stoi(details[0],&pos));
+		carriying.push_back(Item(std::stoi(details[0],&pos)));
 		details[0].erase(0, pos);
 		details[0].erase(0, 2);
 	}
@@ -45,11 +43,16 @@ static std::vector<int> process(std::vector<Monkey> monkey_tribe)
 	int	n_monkey = 0;
 	std::vector<int> n_inspected;
 
-	for (int turn = 0; turn < 20; turn++)
+	for (int turn = 0; turn < 10000; turn++)
 	{
 		for (std::vector<Monkey>::iterator it=monkey_tribe.begin(); \
 			it != monkey_tribe.end(); it++)
 			it->turn(&monkey_tribe);
+		if (turn % 500 == 0 && turn != 0)
+		{
+			std::cout << "\033[0;35m" << std::setw(5) << turn;
+			std::cout << "/10000 done" << "\033[0m" << std::endl;
+		}
 	}
 
 	for (std::vector<Monkey>::iterator it=monkey_tribe.begin(); \
@@ -71,7 +74,7 @@ int main()
 	std::vector<Monkey> monkey_tribe;
 	std::vector<std::string> details;
 	std::vector<int> n_inspected;
-	int total;
+	long long total;
 
 
 	while(std::getline(input, line))
@@ -97,7 +100,7 @@ int main()
 	total = n_inspected.back();
 	n_inspected.pop_back();
 	total *= n_inspected.back();
-	std::cout << "The level of monkey business after 20 rounds is : ";
+	std::cout << "The level of monkey business after 10.000 rounds is :";
 	std::cout << total << std::endl;
 	return (0);
 }
