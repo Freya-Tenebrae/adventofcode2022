@@ -63,24 +63,44 @@ static void next_pos(std::vector<std::vector<int>>map, \
 	}
 }
 
-static bool is_full(std::vector<std::vector<int>> dist_from_exit)
+static void put_dist_only_a(std::vector<std::vector<int>> map, \
+	std::vector<std::vector<int>> *map_only_a, \
+	int source_y, int source_x, int y, int x, int value)
 {
-	// for (std::vector<std::vector<int>>::iterator it_y = dist_from_exit.begin(); \
-	// 	it_y != dist_from_exit.end(); ++it_y)
-	// {
-	// 	for (std::vector<int>::iterator it = it_y->begin(); it != it_y->end(); ++it)
-	// 	{
-	// 		if (*it == 0)
-	// 			std::cout << "x";
-	// 		else
-	// 			std::cout << ".";
-	// 	}
-	// 	std::cout << std::endl;
-	// }
-	// std::cout << std::endl;
+	if ((*map_only_a)[y][x] == 0)
+	{
+		if (map[y][x] == map[source_y][source_x])
+			(*map_only_a)[y][x] = value;
+	}
+}
 
-	for (std::vector<std::vector<int>>::iterator it_y = dist_from_exit.begin(); \
-		it_y != dist_from_exit.end(); ++it_y)
+static void next_pos_only_a(std::vector<std::vector<int>>map, \
+	std::vector<std::vector<int>> *map_only_a, \
+	int x_max, int y_max, int value)
+{
+	for (int y = 0; y < y_max; y++)
+	{
+		for (int x = 0; x < x_max; x++)
+		{
+			if ((*map_only_a)[y][x] == value)
+			{
+				if (x > 0)
+					put_dist_only_a(map, map_only_a, y, x, y, x - 1, value + 1);
+				if (x < x_max - 1)
+					put_dist_only_a(map, map_only_a, y, x, y, x + 1, value + 1);
+				if (y > 0)
+					put_dist_only_a(map, map_only_a, y, x, y - 1, x, value + 1);
+				if (y < y_max - 1)
+					put_dist_only_a(map, map_only_a, y, x, y + 1, x, value + 1);
+			}
+		}
+	}
+}
+
+static bool is_full(std::vector<std::vector<int>> vv)
+{
+	for (std::vector<std::vector<int>>::iterator it_y = vv.begin(); \
+		it_y != vv.end(); ++it_y)
 	{
 		for (std::vector<int>::iterator it = it_y->begin(); it != it_y->end(); ++it)
 		{
@@ -91,17 +111,70 @@ static bool is_full(std::vector<std::vector<int>> dist_from_exit)
 	return (true);
 }
 
+static std::vector<std::vector<int>> move_on_a(std::vector<std::vector<int>> map, \
+	std::vector<int> pos, int x_max, int y_max)
+{
+	std::vector<std::vector<int>> map_only_a, to_send;
+	std::vector<int> tmp;
+	map_only_a = map;
+	int value = 1;
+
+	for (std::vector<std::vector<int>>::iterator it_y = map_only_a.begin(); \
+		it_y != map_only_a.end(); ++it_y)
+	{
+		for (std::vector<int>::iterator it = it_y->begin(); it != it_y->end(); ++it)
+		{
+			if (*it != 0)
+				*it = -1;
+		}
+	}
+
+	map_only_a[pos[0]][pos[1]] = 1;
+	while (is_full(map_only_a) == false && value < x_max * y_max)
+	{
+		next_pos_only_a(map, &map_only_a, x_max, y_max, value);
+		value += 1;
+	}
+
+	for (int y = 0; y < y_max; y++)
+	{
+		for (int x = 0; x < x_max; x++)
+		{
+			if (map_only_a[y][x] > 0)
+			{
+				tmp.push_back(y);
+				tmp.push_back(x);
+				to_send.push_back(tmp);
+				tmp.clear();
+			}
+		}
+	}
+	return (to_send);
+}
+
 static int move_to_exit(std::vector<std::vector<int>> map, \
 	std::vector<std::vector<int>> dist_from_exit, std::vector<int> pos, \
 	int x_max, int y_max)
 {
 	int value = 1;
+	std::vector<int> result;
+	std::vector<std::vector<int>> all_start_possible;
+
+	(void)pos;
+
 	while (is_full(dist_from_exit) == false && value < x_max * y_max)
 	{
 		next_pos(map, &dist_from_exit, x_max, y_max, value);
 		value += 1;
 	}
-	return (dist_from_exit[pos[0]][pos[1]]);
+	all_start_possible = move_on_a(map, pos, x_max, y_max);
+	for (std::vector<std::vector<int>>::iterator it = all_start_possible.begin(); \
+		it != all_start_possible.end(); ++it)
+	{
+		if (dist_from_exit[(*it)[0]][(*it)[1]] < value)
+		value = dist_from_exit[(*it)[0]][(*it)[1]];
+	}
+	return (value);
 }
 
 int main()
