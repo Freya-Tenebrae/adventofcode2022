@@ -28,7 +28,7 @@
 
 [day 14](https://adventofcode.com/2022/day/14) : not released yet
 
-[day 15](https://adventofcode.com/2022/day/15) : not released yet
+[day 15](https://adventofcode.com/2022/day/15) : <img src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" data-canonical-src="https://github.com/Freya-Tenebrae/adventofcode2022/blob/main/Golden_star.svg.png" width="16" height="16" /> will come later ...
 
 [day 16](https://adventofcode.com/2022/day/16) : not released yet
 
@@ -49,3 +49,4 @@
 [day 24](https://adventofcode.com/2022/day/24) : not released yet
 
 [day 25](https://adventofcode.com/2022/day/25) : not released yet
+
